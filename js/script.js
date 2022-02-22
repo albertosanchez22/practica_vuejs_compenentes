@@ -40,37 +40,47 @@ var server_data = {
 
 
 // TODO: Componente edit-form
-Vue.component('edit-form', {
-
+Vue.component('edit-form',{
+    data: function() {
+    }
+    ,props: ["itemdata"],template : '#editForm'
+    
 })
 
 // TODO: Componente item-data
 Vue.component('item-data', {
-
-    props: ["item","index"],
     data: function() {
-        return {
+        return{
             datos: true,
-            formulario : false
-        }
+            edicion: false,
+
+        }         
     },
+    props: ["item"],
     methods:{
-        toggleEditFormVisibility(){
-            this.datos = false;
-            this.formulario = true;
-        }},
-    template: '#itemData'
-  })
+            Editar(){
+                    this.datos = false;
+                    this.edicion = true;
+            },formCerrar(){
+                this.datos = true;
+                this.edicion = false;
+            }
+        
+    },
+
+    template : '#itemData'
+        
+})
 
 // Aplicación VueJS
 // La aplicación recibe los datos en la variable de datos "col"
 var app = new Vue({
     el: '#app',
     data: {
-        col: server_data
+        col: server_data,
+        item:server_data. collection.items
     }
 });
-
 
 
 
